@@ -11,7 +11,6 @@ EOF
 }
 
 function clone() {
-    sudo rm -rf ~/PMUSED
     sudo rm -rf ~/scripts
     git clone --quiet git@github.com:bakhtiardurrani/scripts.git ~/scripts
     sudo chown -cR 1000:1000 ~/scripts/ 1>/dev/null 2>&1
