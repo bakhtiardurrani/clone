@@ -19,7 +19,6 @@ function clone() {
         echo "scripts directory not available you don't have github ssh access!"
         exit 1
     else
-    sudo bash ~/scripts/ssh-access.sh
     sudo bash ~/scripts/after-install.sh
     fi
 }
