@@ -12,9 +12,10 @@ EOF
 
 function clone() {
     sudo rm -rf ~/PMUSED
-    git clone --quiet git@github.com:bakhtiardurrani/scripts.git ~/PMUSED
-    sudo chown -cR $(whoami):$(whoami) ~/PMUSED/ 1>/dev/null 2>&1
-    sudo chmod -cR 755 ~/PMUSED/ >> /dev/null 1>/dev/null 2>&1
+    sudo rm -rf ~/scripts
+    git clone --quiet git@github.com:bakhtiardurrani/scripts.git ~/scripts
+    sudo chown -cR 1000:1000 ~/scripts/ 1>/dev/null 2>&1
+    sudo chmod -cR 755 ~/scripts/ >> /dev/null 1>/dev/null 2>&1
 }
 # Sudo check depricated due to ssh access 
 clone
