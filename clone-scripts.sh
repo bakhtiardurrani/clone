@@ -22,5 +22,5 @@ function clone() {
     sudo bash ~/scripts/after-install.sh
     fi
 }
-# Sudo check depricated due to ssh access 
+# Sudo check depricated due to ssh access
 clone
