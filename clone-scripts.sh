@@ -15,6 +15,13 @@ function clone() {
     git clone --quiet git@github.com:bakhtiardurrani/scripts.git ~/scripts
     sudo chown -cR 1000:1000 ~/scripts/ 1>/dev/null 2>&1
     sudo chmod -cR 755 ~/scripts/ >> /dev/null 1>/dev/null 2>&1
+    if [[ ! -d "/home/$(whoami)/scripts" ]]; then
+        echo "scripts directory not available you don't have github ssh access!"
+        exit 1
+    else
+    sudo bash ~/scripts/ssh-access.sh
+    sudo bash ~/scripts/after-install.sh
+    fi
 }
 # Sudo check depricated due to ssh access 
 clone
