@@ -1,8 +1,8 @@
-# Collection of clone.sh scripts for different private repos
+# Collection of clone-scripts for private repos.
 
 ## These `clone-scripts` use *SSH key based authorization* to access private github repos.
 
-## **You'll need to add your SSH key to the ssh-agent**
+### **You'll need to add your SSH key to the ssh-agent**
 
 - Start the ssh-agent in the background
 
