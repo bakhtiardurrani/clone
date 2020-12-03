@@ -1,12 +1,9 @@
 #!/bin/bash
+
 function sudocheck () {
   if [[ $EUID -ne 0 ]]; then
-    tee <<-EOF
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-⛔️  You Must Execute as a SUDO USER (with sudo) or as ROOT!
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-EOF
-    exit 0
+      echo "Must execute as sudo."
+      exit 1
   fi
 }
 
@@ -20,15 +17,16 @@ function check-ssh() {
     fi
 }
 function clone() {
-    sudo rm -rf ~/scripts
+    if [[ ! -d "/home/$(whoami)/scripts" ]]; then
     git clone --quiet git@github.com:bakhtiardurrani/scripts.git ~/scripts
     sudo chown -cR 1000:1000 ~/scripts/ 1>/dev/null 2>&1
     sudo chmod -cR 755 ~/scripts/ >> /dev/null 1>/dev/null 2>&1
-    if [[ ! -d "/home/$(whoami)/scripts" ]]; then
-        echo "scripts directory not available you don't have github ssh access."
-        exit 1
     else
-    sudo bash ~/scripts/after-install.sh
+    git -C "/home/$(whoami)/scripts" pull
+    git -C "/home/$(whoami)/scripts" fetch --all --prune
+    git -C "/home/$(whoami)/scripts" reset --hard origin/master
+    git -C "/home/$(whoami)/scripts" pull
+    sudo bash /home/"$(whoami)"/scripts/after-install.sh
     fi
 }
 # Sudo check depricated due to ssh access
