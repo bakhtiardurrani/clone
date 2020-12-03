@@ -8,6 +8,6 @@
 
 ```eval $(ssh-agent -s)```
 
-- Add SSH key to agent, this presumes your ssh private key is in the `home` directory and named `id-rsa`
+- Add SSH key to agent, this presumes your ssh private key is in the `home` directory and named `id_rsa`
 
 ```ssh-add ~/.ssh/id_rsa```
