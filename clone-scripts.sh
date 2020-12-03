@@ -18,6 +18,7 @@ function check-ssh() {
     eval $(ssh-agent -s)
     ssh-add /home/$(whoami)/.ssh/id_rsa
     fi
+}
 function clone() {
     sudo rm -rf ~/scripts
     git clone --quiet git@github.com:bakhtiardurrani/scripts.git ~/scripts
