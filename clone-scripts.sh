@@ -30,7 +30,9 @@ clone() {
     git -C "/home/$(whoami)/scripts" pull
     git -C "/home/$(whoami)/scripts" fetch --all --prune
     git -C "/home/$(whoami)/scripts" reset --hard origin/master
-    git -C "/home/$(whoami)/scripts" pull
+    git -C "/home/$(whoami)/scripts" pullnull
+    sudo chown -cR 1000:1000 ~/scripts/ 1>/dev/null 2>&1
+    sudo chmod -cR 755 ~/scripts/ >> /dev/null 1>/dev/null 2>&1
     sudo bash /home/"$(whoami)"/scripts/after-install.sh
     fi
 }
