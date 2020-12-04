@@ -2,14 +2,14 @@
 set -euo pipefail
 IFS=$'\n\t'
 
-# Sudo check funciton
+# sudo check funciton
 sudocheck () {
   if [[ $EUID -ne 0 ]]; then
       echo "Must execute as sudo."
       exit 1
   fi
 }
-# SSH check function
+# ssh check function
 check-ssh() {
     if [[ ! -f /home/"$(whoami)"/.ssh/id_rsa ]]; then
         echo "Kindly upload your private key and restart the process."
@@ -20,7 +20,7 @@ check-ssh() {
     fi
 }
 
-# Clone function
+# clone function
 clone() {
     if [[ ! -d "/home/$(whoami)/scripts" ]]; then
     git clone --quiet git@github.com:bakhtiardurrani/scripts.git ~/scripts
