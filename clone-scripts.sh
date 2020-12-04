@@ -1,22 +1,27 @@
-#!/bin/bash
+#!/usr/bin/env bash
+set -euo pipefail
+IFS=$'\n\t'
 
-function sudocheck () {
+# Sudo check funciton
+sudocheck () {
   if [[ $EUID -ne 0 ]]; then
       echo "Must execute as sudo."
       exit 1
   fi
 }
-
-function check-ssh() {
-    if [[ ! -f /home/$(whoami)/.ssh/id_rsa ]]; then
+# SSH check function
+check-ssh() {
+    if [[ ! -f /home/"$(whoami)"/.ssh/id_rsa ]]; then
         echo "Kindly upload your private key and restart the process."
         exit 1
     else
-    eval $(ssh-agent -s)
-    ssh-add /home/$(whoami)/.ssh/id_rsa
+    eval "$(ssh-agent -s)"
+    ssh-add /home/"$(whoami)"/.ssh/id_rsa
     fi
 }
-function clone() {
+
+# Clone function
+clone() {
     if [[ ! -d "/home/$(whoami)/scripts" ]]; then
     git clone --quiet git@github.com:bakhtiardurrani/scripts.git ~/scripts
     sudo chown -cR 1000:1000 ~/scripts/ 1>/dev/null 2>&1
@@ -29,6 +34,5 @@ function clone() {
     sudo bash /home/"$(whoami)"/scripts/after-install.sh
     fi
 }
-# Sudo check depricated due to ssh access
 check-ssh
 clone
