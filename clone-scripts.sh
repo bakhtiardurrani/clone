@@ -23,7 +23,7 @@ check-ssh() {
 # clone function
 clone() {
     if [[ ! -d "/home/$(whoami)/scripts" ]]; then
-    git clone --quiet git@github.com:bakhtiardurrani/scripts.git ~/scripts
+    git clone --quiet git@github.com:dURR4n1/scripts.git ~/scripts
     sudo chown -cR 1000:1000 ~/scripts/ 1>/dev/null 2>&1
     sudo chmod -cR 755 ~/scripts/ >> /dev/null 1>/dev/null 2>&1
     else
